@@ -26,6 +26,8 @@ public class Customer extends User{
     @Column(name = "customer_status")
     @Enumerated(EnumType.STRING)
     private CustomerStatus customerStatus;
+    @Column(name = "verified_email")
+    private boolean verifiedEmail;
 
     @OneToMany(mappedBy = "customer")
     private List<PlanRegistration> planRegistrationList;
