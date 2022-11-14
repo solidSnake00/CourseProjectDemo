@@ -1,5 +1,6 @@
 package com.example.projectcourse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@ToString
 @AllArgsConstructor
 @SuperBuilder
 @Entity
@@ -29,6 +31,8 @@ public class Customer extends User{
     @Column(name = "verified_email")
     private boolean verifiedEmail;
 
-    @OneToMany(mappedBy = "customer")
-    private List<PlanRegistration> planRegistrationList;
+    @ToString.Exclude
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
+    private List<PlanRegistration> planRegistrationList = new java.util.ArrayList<>();
 }

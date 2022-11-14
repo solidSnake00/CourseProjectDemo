@@ -1,5 +1,6 @@
 package com.example.projectcourse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,5 +31,6 @@ public class Instructor {
 
     @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY,
     cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Course> courses;
 }

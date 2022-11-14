@@ -24,6 +24,10 @@ public class PlanRegistrationService {
         return planRegistrationRepository.findAll();
     }
 
+    public List<PlanRegistration> getAllPlanRegistrationsSQL(){
+        return planRegistrationRepository.getAllRegistrationsSQL();
+    }
+
     public PlanRegistration getPlanRegistrationById(PlanRegistrationKey id){
         Optional<PlanRegistration> planRegistrationOptional=planRegistrationRepository.findById(id);
         return planRegistrationOptional.get();

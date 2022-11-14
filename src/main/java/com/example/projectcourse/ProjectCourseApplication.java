@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootApplication
 public class ProjectCourseApplication {
@@ -55,7 +56,7 @@ public class ProjectCourseApplication {
 
 		System.out.println(ppp);*/
 
-		Plan plan=planService.getPlanById(4);
+		/*Plan plan=planService.getPlanById(4);
 
 		Customer customer=customerService.getCustomerByUsername("test3238");
 
@@ -67,7 +68,18 @@ public class ProjectCourseApplication {
 		planRegistration.setId(planRegistrationKey);
 
 
-		planRegistrationService.addPlanRegistration(planRegistration,customer,plan);
+		planRegistrationService.addPlanRegistration(planRegistration,customer,plan);*/
+
+		//List<Customer> customerList=customerService.getAllCustomers();
+		//Customer customer=customerService.getCustomerById(3);
+
+		//System.out.println(customerList);
+		/*PlanRegistrationKey planRegistrationKey=new PlanRegistrationKey();
+		planRegistrationKey.setPlanId();
+
+		PlanRegistration planRegistration=planRegistrationService.getPlanRegistrationById());*/
+
+		//System.out.println(planRegistrationService.getAllPlanRegistrationsSQL());
 
 
 

@@ -1,9 +1,8 @@
 package com.example.projectcourse.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 
 import javax.persistence.*;
@@ -31,6 +30,7 @@ public class Plan {
     @Column(name = "duration_in_month")
     private int monthDuration;
 
-    @OneToMany(mappedBy = "plan")
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "plan")
     private List<PlanRegistration> planRegistrationList;
 }

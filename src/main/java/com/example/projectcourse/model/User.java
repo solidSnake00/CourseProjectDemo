@@ -4,6 +4,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
@@ -25,7 +27,9 @@ public abstract class User {
     @Column(name = "username", nullable = false, unique = true, length = 35)
     private String userName;
     @Column(name = "email")
+    @Email(message = "Enter a valid email")
     private String email;
     @Column(name = "password")
+    @Size(min = 5, message = "Password should at least contains 5 characters")
     private String password;
 }
