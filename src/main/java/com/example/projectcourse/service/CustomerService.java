@@ -22,6 +22,7 @@ public class CustomerService {
     @Autowired
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
+        System.out.println("Customer service sop!!!!!!!!!!!!!!!!!!!!!!");
     }
 
     public List<Customer> getAllCustomers(){
@@ -56,6 +57,14 @@ public class CustomerService {
         String password= passwordEncoder.encode(customer.getPassword());
         customer.setPassword(password);
 
+        customerRepository.save(customer);
+    }
+
+    public void deleteCustomer(Customer customer){
+        customerRepository.delete(customer);
+    }
+
+    public void updateCustomer(Customer customer){
         customerRepository.save(customer);
     }
 

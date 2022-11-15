@@ -1,7 +1,10 @@
 package com.example.projectcourse.service;
 
+import com.example.projectcourse.exceptions.AdminNotFoundException;
+import com.example.projectcourse.exceptions.AllAdminNotFoundException;
 import com.example.projectcourse.model.Admin;
 import com.example.projectcourse.repository.AdminRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,22 +22,43 @@ public class AdminService {
     }
 
     public List<Admin> getAllAdmins(){
-        return adminRepository.findAll();
+        try {
+            return adminRepository.findAll();
+        }catch (Exception e){
+            throw new AllAdminNotFoundException();
+        }
     }
 
     public Admin getAdminById(long id){
-        Optional<Admin> admin=adminRepository.findById(id);
 
-        return admin.get();
+        try {
+            Optional<Admin> admin=adminRepository.findById(id);
+            return admin.get();
+        }catch (Exception e){
+            throw new AdminNotFoundException(id);
+        }
+
     }
 
     public Admin getAdminByUsername(String userName){
-        Optional<Admin> admin=adminRepository.findAdminByUserName(userName);
+        try {
+            Optional<Admin> admin=adminRepository.findAdminByUserName(userName);
+            return admin.get();
+        }catch (Exception e){
+            throw new AdminNotFoundException(userName);
+        }
 
-        return admin.get();
     }
 
-    public void addAdmin(Admin admin){
+    public void addAdmin(@NotNull Admin admin){
         adminRepository.save(admin);
+    }
+
+    public void updateAdmin(Admin admin){
+        adminRepository.save(admin);
+    }
+
+    public void deleteAdmin(Admin admin){
+        adminRepository.delete(admin);
     }
 }

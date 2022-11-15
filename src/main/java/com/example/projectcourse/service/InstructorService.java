@@ -36,6 +36,5 @@ public class InstructorService {
         return instructor.getCourses();
     }
 
-    public static class PlanService {
-    }
+
 }

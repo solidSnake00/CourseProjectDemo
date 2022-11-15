@@ -4,9 +4,9 @@ import com.example.projectcourse.model.*;
 import com.example.projectcourse.repository.PlanRegistrationRepository;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +49,17 @@ public class PlanRegistrationService {
         planRegistration.setPaymentMethod(PaymentMethod.PAYPAL);
 
         planRegistrationRepository.save(planRegistration);
+    }
+
+    @Scheduled(cron="0 0 0 * * ?")
+    public void checkExpirationDate(){
+        List<PlanRegistration> planRegistrationList=this.getAllPlanRegistrations();
+        for (PlanRegistration planRegistration : planRegistrationList) {
+            if (planRegistration.getExpirationDate().isAfter(LocalDate.now()) || planRegistration.getExpirationDate().equals(LocalDate.now())) {
+                planRegistration.setPlanRegistrationExpiration(PlanRegistrationExpiration.EXPIRED);
+            }
+        }
+
     }
 
 }

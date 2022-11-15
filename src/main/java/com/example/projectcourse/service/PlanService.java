@@ -1,5 +1,7 @@
 package com.example.projectcourse.service;
 
+import com.example.projectcourse.exceptions.AllCustomersNotFoundException;
+import com.example.projectcourse.exceptions.PlanNotFoundException;
 import com.example.projectcourse.model.Plan;
 import com.example.projectcourse.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +20,33 @@ public class PlanService {
     }
 
     public List<Plan> getAllPlans(){
-        return planRepository.findAll();
+        try {
+            return planRepository.findAll();
+        } catch (Exception e) {
+            throw new AllCustomersNotFoundException();
+        }
+
     }
 
     public Plan getPlanById(long id){
-        Optional<Plan> plan=planRepository.findById(id);
-        return plan.get();
+        try {
+            Optional<Plan> plan=planRepository.findById(id);
+            return plan.get();
+        } catch (Exception e) {
+            throw new PlanNotFoundException(id);
+        }
+
     }
 
     public void addPlan(Plan plan){
+        planRepository.save(plan);
+    }
+
+    public void deletePlan(Plan plan){
+        planRepository.delete(plan);
+    }
+
+    public void updatePlan(Plan plan){
         planRepository.save(plan);
     }
 }

@@ -41,6 +41,9 @@ public class PlanRegistration {
     private LocalDate purchaseDate;
     @Column(name = "expiration_date")
     private LocalDate expirationDate;
+    @Column(name = "expiration_status")
+    @Enumerated(EnumType.STRING)
+    private PlanRegistrationExpiration planRegistrationExpiration;
 
     @Override
     public boolean equals(Object o) {

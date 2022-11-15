@@ -35,4 +35,48 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+    /////////////////////////////////
+    @ExceptionHandler(AdminNotFoundException.class)
+    public ResponseEntity<Object> handleAdminIdException(@NotNull AdminNotFoundException ex, WebRequest webRequest){
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp: ", LocalDateTime.now());
+        body.put("message: ", ex.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+
+    }
+
+    @ExceptionHandler(AllAdminNotFoundException.class)
+    public ResponseEntity<Object> handleAllAdminException(@NotNull AllAdminNotFoundException ex, WebRequest webRequest){
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp: ", LocalDateTime.now());
+        body.put("message: ", ex.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+    //////////////////////////////////
+
+    @ExceptionHandler(PlanNotFoundException.class)
+    public ResponseEntity<Object> handlePlanIdException(@NotNull PlanNotFoundException ex, WebRequest webRequest){
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp: ", LocalDateTime.now());
+        body.put("message: ", ex.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+
+    }
+
+    @ExceptionHandler(AllPlanNotFoundException.class)
+    public ResponseEntity<Object> handleAllPlanException(@NotNull AllPlanNotFoundException ex, WebRequest webRequest){
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp: ", LocalDateTime.now());
+        body.put("message: ", ex.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+
+    }
 }
