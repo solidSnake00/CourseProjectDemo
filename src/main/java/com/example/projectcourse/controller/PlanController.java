@@ -34,8 +34,8 @@ public class PlanController {
         planService.addPlan(plan);
     }
 
-    @DeleteMapping("/id/{id}")
-    public void deletePlan(@PathVariable long id){
+    @DeleteMapping("/delete")
+    public void deletePlan(@RequestBody long id){
         Plan plan=planService.getPlanById(id);
         planService.deletePlan(plan);
     }

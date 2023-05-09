@@ -39,8 +39,8 @@ public class AdminController {
         adminService.addAdmin(admin);
     }
 
-    @DeleteMapping("/id/{id}")
-    public void deleteAdmin(@PathVariable long id){
+    @DeleteMapping("/delete")
+    public void deleteAdmin(@RequestBody long id){
         Admin admin=adminService.getAdminById(id);
         adminService.deleteAdmin(admin);
     }

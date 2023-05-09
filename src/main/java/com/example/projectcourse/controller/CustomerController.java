@@ -3,6 +3,7 @@ package com.example.projectcourse.controller;
 import com.example.projectcourse.model.Customer;
 import com.example.projectcourse.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -45,8 +46,8 @@ public class CustomerController {
         customerService.updateCustomer(customer);
     }
 
-    @DeleteMapping("/id/{id}")
-    public void deleteCustomer(@PathVariable long id){
+    @DeleteMapping("/delete")
+    public void deleteCustomer(@RequestBody long id){
         Customer customer=customerService.getCustomerById(id);
         customerService.deleteCustomer(customer);
     }
